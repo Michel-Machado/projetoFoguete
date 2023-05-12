@@ -1,9 +1,11 @@
 package br.com.foguete.rpgproject.domain;
 
+import br.com.foguete.rpgproject.repository.entity.PersonagemEntity;
+
 public class Personagem {
     private String nome;
     private String raca;
-    private String nomeDoJogador;
+    private String idJogador;
     private Integer forca;
     private Integer destreza;
     private Integer constituicao;
@@ -11,13 +13,26 @@ public class Personagem {
     private Integer sabedoria;
     private Integer carisma;
 
+    public static Personagem from(PersonagemEntity personagemEntity) {
+        return new Personagem()
+                .setNome(personagemEntity.getName())
+                .setRaca(personagemEntity.getRace())
+                .setIdJogador(personagemEntity.getPlayer())
+                .setForca(personagemEntity.getStrength())
+                .setDestreza(personagemEntity.getDexterity())
+                .setConstituicao(personagemEntity.getConstitution())
+                .setInteligencia(personagemEntity.getIntelligence())
+                .setCarisma(personagemEntity.getCharisma())
+                .setSabedoria(personagemEntity.getWisdom());
+    }
+
     public Personagem() {
     }
 
     public Personagem(String nome, String raca, String nomeDoJogador, Integer forca, Integer destreza, Integer constituicao, Integer inteligencia, Integer sabedoria, Integer carisma) {
         this.nome = nome;
         this.raca = raca;
-        this.nomeDoJogador = nomeDoJogador;
+        this.idJogador = nomeDoJogador;
         this.forca = forca;
         this.destreza = destreza;
         this.constituicao = constituicao;
@@ -44,12 +59,12 @@ public class Personagem {
         return this;
     }
 
-    public String getNomeDoJogador() {
-        return nomeDoJogador;
+    public String getIdJogador() {
+        return idJogador;
     }
 
-    public Personagem setNomeDoJogador(String nomeDoJogador) {
-        this.nomeDoJogador = nomeDoJogador;
+    public Personagem setIdJogador(String idJogador) {
+        this.idJogador = idJogador;
         return this;
     }
 
@@ -106,6 +121,10 @@ public class Personagem {
         this.carisma = carisma;
         return this;
     }
+
+
 }
+
+
 
 
